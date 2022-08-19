@@ -9,15 +9,15 @@ import java.util.List;
 @Entity(name = "organization")
 @Getter
 @Setter
-public class Organization {
+public class OrganizationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id_organization", nullable = false)
     private Long id;
     @Column(name = "name", nullable = false, length = 50)
     private String name;
     @Column(name = "status", nullable = false)
     private Integer status;
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
-    private List<Tribe> tribes;
+    @OneToMany(mappedBy = "organizationEntity", cascade = CascadeType.ALL)
+    private List<TribeEntity> tribeEntities;
 }

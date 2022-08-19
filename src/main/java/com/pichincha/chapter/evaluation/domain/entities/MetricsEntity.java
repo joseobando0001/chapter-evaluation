@@ -8,9 +8,9 @@ import javax.persistence.*;
 @Entity(name = "metrics")
 @Getter
 @Setter
-public class Metrics {
+public class MetricsEntity {
     @Id
-    @Column(name = "id_repository", nullable = false)
+    @Column(name = "id_metrics", nullable = false)
     private Long id;
     @Column(name = "coverage", nullable = false)
     private Double coverage;
@@ -23,7 +23,7 @@ public class Metrics {
     @Column(name = "code_smells", nullable = false)
     private Integer codeSmells;
     @OneToOne
-    @PrimaryKeyJoinColumn(name = "id_repository", referencedColumnName = "id")
-    private Repository repository;
+    @PrimaryKeyJoinColumn(name = "id_metrics", referencedColumnName = "id_repository")
+    private RepositoryEntity repository;
 
 }

@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @Entity(name = "repository")
 @Getter
 @Setter
-public class Repository {
+public class RepositoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id_repository", nullable = false)
     private Long id;
     @Column(name = "name", nullable = false, length = 50)
     private String name;
@@ -23,8 +23,8 @@ public class Repository {
     @Column(name = "status", nullable = false, length = 1)
     private String status;
     @ManyToOne
-    @JoinColumn(name = "id_tribe", referencedColumnName = "id", nullable = false, updatable = false)
-    private Tribe tribe;
+    @JoinColumn(name = "id_tribe", referencedColumnName = "id_tribe", nullable = false, updatable = false)
+    private TribeEntity tribeEntity;
     @OneToOne(mappedBy = "repository")
-    private Metrics metrics;
+    private MetricsEntity metricsEntity;
 }
