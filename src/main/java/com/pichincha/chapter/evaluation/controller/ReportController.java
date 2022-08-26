@@ -1,7 +1,7 @@
 package com.pichincha.chapter.evaluation.controller;
 
 import com.pichincha.chapter.evaluation.domain.dto.ReportRepositoryDto;
-import com.pichincha.chapter.evaluation.repository.ReportRepository;
+import com.pichincha.chapter.evaluation.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +17,12 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ReportController {
-    private final ReportRepository repository;
+    private final ReportService reportService;
 
     @GetMapping("/{tribeId}")
     ResponseEntity<List<ReportRepositoryDto>> getReport(@PathVariable Long tribeId) {
-        return ResponseEntity.ok(repository.getReport(tribeId));
+        return ResponseEntity.ok(reportService.getReportWithState(tribeId));
     }
+
+
 }
