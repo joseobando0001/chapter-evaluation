@@ -34,15 +34,14 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public OrganizationDto update(Long id, OrganizationDto organizationDto) {
-        validateAndGetById(id);
-        return mapper.entityToDto(this.organizationRepository.save(
-                mapper.dtoToEntity(organizationDto)));
+        OrganizationEntity organizationEntity = validateAndGetById(id);
+        organizationEntity.setName(organizationDto.getName());
+        return mapper.entityToDto(this.organizationRepository.save(organizationEntity));
     }
 
     @Override
     public void deleteById(Long id) {
-        validateAndGetById(id);
-        organizationRepository.deleteById(id);
+        organizationRepository.delete(validateAndGetById(id));
     }
 
     private OrganizationEntity validateAndGetById(Long id) {
